@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CalendarDays, MapPin, Send, ChevronDown, Upload, X, Smartphone } from "lucide-react";
+import { CalendarDays, MapPin, Send, ChevronDown, Upload, X } from "lucide-react";
 import ScratchCard from "./ScratchCard";
 import Gramophone from "../Gramophone";
 import { useCountdown } from "@/hooks/useCountdown";
@@ -517,7 +517,7 @@ const Template6Page = () => {
               <div className="mt-12 grid grid-cols-3 gap-5 sm:gap-10 w-full max-w-xs sm:max-w-sm">
                 {[
                   [template6Data.reveal.day, "Day", "يوم"],
-                  [template6Data.reveal.month, "Month", "شهر"],
+                  [t(template6Data.reveal.month, template6Data.reveal.monthAr), "Month", "شهر"],
                   [template6Data.reveal.year, "Year", "سنة"],
                 ].map(([value, labelEn, labelAr], index) => (
                   <Reveal key={labelEn as string} delay={index * 0.12} className="flex flex-col items-center">
