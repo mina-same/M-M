@@ -55,7 +55,7 @@ const Gramophone = ({ song, position = 'bottom-right', autoPlay = false }: Gramo
       });
       setIsPlaying(true);
     }
-  }, [autoPlay]);
+  }, [autoPlay, isPlaying]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();

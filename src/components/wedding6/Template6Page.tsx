@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CalendarDays, MapPin, Send, ChevronDown, Upload, X, Smartphone } from "lucide-react";
 import ScratchCard from "./ScratchCard";
@@ -12,6 +12,17 @@ type WishMessage = {
   message: string;
   uploadedPhotos: { photos: string[] } | null;
   timestamp: number;
+};
+
+const getSavedWish = (): WishMessage | null => {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const savedWish = localStorage.getItem("template6SavedWish");
+    return savedWish ? JSON.parse(savedWish) : null;
+  } catch {
+    return null;
+  }
 };
 
 const assets = {
@@ -46,6 +57,114 @@ const SectionTitle = ({ eyebrow, title }: { eyebrow?: string; title: string }) =
   </Reveal>
 );
 
+const WishPagePreview = ({ previewWish }: { previewWish: WishMessage }) => {
+  const photos = previewWish.uploadedPhotos?.photos || [];
+  const isMsgAr = /[\u0600-\u06FF]/.test(previewWish.message || "");
+  const isNameAr = /[\u0600-\u06FF]/.test(previewWish.name || "");
+  const rotations = ['rotate-[2deg]', '-rotate-[2deg]', 'rotate-[1deg]', '-rotate-[1deg]'];
+
+  const renderPhotos = () => {
+    if (photos.length === 0) return null;
+    const count = Math.min(photos.length, 4);
+    const polaroid = (photo: string, pIdx: number, size: string) => (
+      <div key={pIdx} className={`p-1.5 bg-white shadow-md border border-zinc-100 ${size} ${rotations[pIdx]} flex-shrink-0`}>
+        <img src={photo} alt="" className="w-full h-full object-cover opacity-90" style={{ filter: 'sepia(20%)' }} />
+      </div>
+    );
+
+    if (count === 1) return (
+      <div className="mt-5 flex justify-center md:mt-0 md:flex-shrink-0">
+        {polaroid(photos[0], 0, 'w-28 h-28 md:w-32 md:h-32')}
+      </div>
+    );
+
+    if (count === 2) return (
+      <div className="mt-5 flex justify-center gap-3 md:mt-0 md:flex-shrink-0 md:flex-col md:gap-2">
+        {photos.slice(0, 2).map((p, i) => polaroid(p, i, 'w-24 h-24 md:w-20 md:h-20'))}
+      </div>
+    );
+
+    if (count === 3) return (
+      <div className="mt-5 flex justify-center gap-2 md:mt-0 md:flex-shrink-0 md:flex-col md:gap-2">
+        {photos.slice(0, 3).map((p, i) => polaroid(p, i, 'w-[72px] h-[72px] md:w-[68px] md:h-[68px]'))}
+      </div>
+    );
+
+    return (
+      <div className="mt-5 grid grid-cols-2 gap-2 justify-items-center md:mt-0 md:flex-shrink-0">
+        {photos.slice(0, 4).map((p, i) => polaroid(p, i, 'w-[72px] h-[72px] md:w-16 md:h-16'))}
+      </div>
+    );
+  };
+
+  return (
+    <div
+      className="relative mx-auto w-full overflow-hidden bg-gradient-to-br from-[#FDFBF7] to-zinc-100 shadow-[0_8px_40px_rgba(0,0,0,0.13)] md:max-w-lg"
+      style={{ borderRadius: '2px 8px 8px 2px' }}
+    >
+      {/* Spine shadow */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-black/[0.07] to-transparent" />
+
+      <div className="relative p-7 pt-9 md:p-10 md:pt-12">
+        {/* Message area */}
+        <div className="relative px-4 md:px-6">
+          <span className={`absolute ${isMsgAr ? '-right-1' : '-left-1'} -top-5 font-serif text-5xl text-rose-900/10 md:text-6xl`}>&ldquo;</span>
+
+          <div
+            className={`relative z-10 ${photos.length > 0 ? 'flex flex-col md:flex-row md:items-start md:gap-5' : ''}`}
+            dir={isMsgAr ? 'rtl' : 'ltr'}
+          >
+            <p
+              className={`flex-1 mt-1 whitespace-pre-wrap break-words text-zinc-800 ${isMsgAr ? '' : 'font-serif italic'} ${
+                (previewWish.message?.length || 0) > 300
+                  ? 'text-sm leading-snug'
+                  : (previewWish.message?.length || 0) > 120
+                  ? 'text-base leading-snug'
+                  : 'text-lg leading-relaxed'
+              }`}
+            >
+              {previewWish.message}
+            </p>
+
+            {renderPhotos()}
+          </div>
+
+          {/* Author line */}
+          <div
+            className={`mt-5 flex items-center gap-3 border-t border-rose-900/10 pt-4 ${
+              isMsgAr ? 'flex-row-reverse justify-end' : 'justify-end'
+            }`}
+          >
+            <div className="h-[1px] w-8 bg-rose-900/30" />
+            <div className={`flex flex-col ${isMsgAr ? 'items-start' : 'items-end'}`}>
+              <p
+                dir={isNameAr ? 'rtl' : 'ltr'}
+                className={`text-xs font-medium uppercase tracking-wider text-rose-950 ${isNameAr ? 'text-sm' : 'font-serif'}`}
+              >
+                {previewWish.name}
+              </p>
+              {previewWish.timestamp && (
+                <p className="font-serif text-[10px] italic uppercase tracking-widest text-zinc-400">
+                  {new Date(previewWish.timestamp).toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Page number */}
+        <div className="mt-6 text-center font-serif text-sm text-zinc-400">
+          &mdash; 1 &mdash;
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Template6Page = () => {
   const [videoStarted, setVideoStarted] = useState(false);
   const [doorOpened, setDoorOpened] = useState(false);
@@ -55,16 +174,18 @@ const Template6Page = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const countdown = useCountdown(template6Data.hero.countdownDate);
+  const [initialSavedWish] = useState(getSavedWish);
+  const [previewTimestamp] = useState(() => Date.now());
 
   // Wishes form state
-  const [wishSubmitted, setWishSubmitted] = useState(false);
-  const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
+  const [wishSubmitted, setWishSubmitted] = useState(() => Boolean(initialSavedWish));
+  const [uploadedPhotos, setUploadedPhotos] = useState<string[]>(() => initialSavedWish?.uploadedPhotos?.photos || []);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [wishForm, setWishForm] = useState({
-    name: "",
-    message: "",
-  });
-  const [savedWishId, setSavedWishId] = useState<number | null>(null);
+  const [wishForm, setWishForm] = useState(() => ({
+    name: initialSavedWish?.name === "Anonymous" ? "" : initialSavedWish?.name || "",
+    message: initialSavedWish?.message === "Write your wish for us" ? "" : initialSavedWish?.message || "",
+  }));
+  const [savedWishId, setSavedWishId] = useState<number | null>(() => initialSavedWish?.timestamp || null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [showInstapay, setShowInstapay] = useState(false);
@@ -119,28 +240,13 @@ const Template6Page = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
-  // Load photo booth data on mount
-  useEffect(() => {
-    const savedWish = localStorage.getItem("template6SavedWish");
-    if (savedWish) {
-      const parsed = JSON.parse(savedWish);
-      setSavedWishId(parsed.timestamp || null);
-      setWishForm({
-        name: parsed.name === "Anonymous" ? "" : parsed.name || "",
-        message: parsed.message === "Write your wish for us" ? "" : parsed.message || "",
-      });
-      setUploadedPhotos(parsed.uploadedPhotos?.photos || []);
-      setWishSubmitted(true);
-    }
-  }, []);
-
   // Handle wish submission
   const uploadPhotosToSupabase = async () => {
     const photoUrls: string[] = [];
 
     for (const file of uploadedFiles) {
       const safeName = file.name.replace(/[^a-zA-Z0-9_.-]/g, "_");
-      const filePath = `wish-images/${Date.now()}-${safeName}`;
+      const filePath = `guest-wishes/${Date.now()}-${safeName}`;
       const { error: uploadError } = await supabase.storage.from("wish-images").upload(filePath, file, {
         cacheControl: "3600",
         upsert: false,
@@ -255,116 +361,8 @@ const Template6Page = () => {
     name: wishForm.name || "Anonymous",
     message: wishForm.message || "Write your wish for us",
     uploadedPhotos: uploadedPhotos.length > 0 ? { photos: uploadedPhotos } : null,
-    timestamp: savedWishId || Date.now(),
-  }), [wishForm.name, wishForm.message, uploadedPhotos, savedWishId]);
-
-  const WishPagePreview = () => {
-    const photos = previewWish.uploadedPhotos?.photos || [];
-    const isMsgAr = /[؀-ۿ]/.test(previewWish.message || "");
-    const isNameAr = /[؀-ۿ]/.test(previewWish.name || "");
-    const rotations = ['rotate-[2deg]', '-rotate-[2deg]', 'rotate-[1deg]', '-rotate-[1deg]'];
-
-    const renderPhotos = () => {
-      if (photos.length === 0) return null;
-      const count = Math.min(photos.length, 4);
-      const polaroid = (photo: string, pIdx: number, size: string) => (
-        <div key={pIdx} className={`p-1.5 bg-white shadow-md border border-zinc-100 ${size} ${rotations[pIdx]} flex-shrink-0`}>
-          <img src={photo} alt="" className="w-full h-full object-cover opacity-90" style={{ filter: 'sepia(20%)' }} />
-        </div>
-      );
-
-      if (count === 1) return (
-        <div className="mt-5 flex justify-center md:mt-0 md:flex-shrink-0">
-          {polaroid(photos[0], 0, 'w-28 h-28 md:w-32 md:h-32')}
-        </div>
-      );
-
-      if (count === 2) return (
-        <div className="mt-5 flex justify-center gap-3 md:mt-0 md:flex-shrink-0 md:flex-col md:gap-2">
-          {photos.slice(0, 2).map((p, i) => polaroid(p, i, 'w-24 h-24 md:w-20 md:h-20'))}
-        </div>
-      );
-
-      if (count === 3) return (
-        <div className="mt-5 flex justify-center gap-2 md:mt-0 md:flex-shrink-0 md:flex-col md:gap-2">
-          {photos.slice(0, 3).map((p, i) => polaroid(p, i, 'w-[72px] h-[72px] md:w-[68px] md:h-[68px]'))}
-        </div>
-      );
-
-      return (
-        <div className="mt-5 grid grid-cols-2 gap-2 justify-items-center md:mt-0 md:flex-shrink-0">
-          {photos.slice(0, 4).map((p, i) => polaroid(p, i, 'w-[72px] h-[72px] md:w-16 md:h-16'))}
-        </div>
-      );
-    };
-
-    return (
-      <div
-        className="relative mx-auto w-full overflow-hidden bg-gradient-to-br from-[#FDFBF7] to-zinc-100 shadow-[0_8px_40px_rgba(0,0,0,0.13)] md:max-w-lg"
-        style={{ borderRadius: '2px 8px 8px 2px' }}
-      >
-        {/* Spine shadow */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-black/[0.07] to-transparent" />
-
-        <div className="relative p-7 pt-9 md:p-10 md:pt-12">
-          {/* Message area */}
-          <div className="relative px-4 md:px-6">
-            <span className={`absolute ${isMsgAr ? '-right-1' : '-left-1'} -top-5 font-serif text-5xl text-rose-900/10 md:text-6xl`}>&ldquo;</span>
-
-            <div
-              className={`relative z-10 ${photos.length > 0 ? 'flex flex-col md:flex-row md:items-start md:gap-5' : ''}`}
-              dir={isMsgAr ? 'rtl' : 'ltr'}
-            >
-              <p
-                className={`flex-1 mt-1 whitespace-pre-wrap break-words text-zinc-800 ${isMsgAr ? '' : 'font-serif italic'} ${
-                  (previewWish.message?.length || 0) > 300
-                    ? 'text-sm leading-snug'
-                    : (previewWish.message?.length || 0) > 120
-                    ? 'text-base leading-snug'
-                    : 'text-lg leading-relaxed'
-                }`}
-              >
-                {previewWish.message}
-              </p>
-
-              {renderPhotos()}
-            </div>
-
-            {/* Author line */}
-            <div
-              className={`mt-5 flex items-center gap-3 border-t border-rose-900/10 pt-4 ${
-                isMsgAr ? 'flex-row-reverse justify-end' : 'justify-end'
-              }`}
-            >
-              <div className="h-[1px] w-8 bg-rose-900/30" />
-              <div className={`flex flex-col ${isMsgAr ? 'items-start' : 'items-end'}`}>
-                <p
-                  dir={isNameAr ? 'rtl' : 'ltr'}
-                  className={`text-xs font-medium uppercase tracking-wider text-rose-950 ${isNameAr ? 'text-sm' : 'font-serif'}`}
-                >
-                  {previewWish.name}
-                </p>
-                {previewWish.timestamp && (
-                  <p className="font-serif text-[10px] italic uppercase tracking-widest text-zinc-400">
-                    {new Date(previewWish.timestamp).toLocaleDateString(undefined, {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Page number */}
-          <div className="mt-6 text-center font-serif text-sm text-zinc-400">
-            &mdash; 1 &mdash;
-          </div>
-        </div>
-      </div>
-    );
-  };
+    timestamp: savedWishId || previewTimestamp,
+  }), [wishForm.name, wishForm.message, uploadedPhotos, savedWishId, previewTimestamp]);
 
   return (
     <main className="min-h-screen bg-w6-paper text-w6-blue font-med-body overflow-x-hidden">
@@ -785,7 +783,7 @@ const Template6Page = () => {
                           <p className="mb-3 text-center text-xs font-medium uppercase tracking-widest text-w6-blue/50">
                             {t('Your wish will look like that in our wish book', 'أمنيتك هتبان كده في كتاب الأمنيات')}
                           </p>
-                          <WishPagePreview />
+                          <WishPagePreview previewWish={previewWish} />
                         </div>
 
                         <button
@@ -884,7 +882,7 @@ const Template6Page = () => {
                             <p className="mb-3 text-center text-xs font-medium uppercase tracking-widest text-w6-blue/50">
                               {t('Your wish will look like this in our wish book', 'أمنيتك هتبان كده في كتاب الأمنيات')}
                             </p>
-                            <WishPagePreview />
+                            <WishPagePreview previewWish={previewWish} />
                           </div>
                         )}
                       </motion.form>
@@ -896,7 +894,7 @@ const Template6Page = () => {
                     <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-w6-blue/40">
                       {t('Your wish will look like this in our wish book', 'أمنيتك هتبان كده في كتاب الأمنيات')}
                     </p>
-                    <WishPagePreview />
+                    <WishPagePreview previewWish={previewWish} />
                   </Reveal>
 
                 </div>
