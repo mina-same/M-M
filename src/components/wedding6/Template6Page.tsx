@@ -439,19 +439,19 @@ const Template6Page = () => {
         <AnimatePresence>
           {doorOpened && (
             <motion.div
-              className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-w6-blue/40 backdrop-blur-[2px]"
+              className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[linear-gradient(180deg,rgba(11,41,83,0.72),rgba(11,41,83,0.48)_42%,rgba(11,41,83,0.78))] backdrop-blur-[1px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, delay: 0.5 }}
             >
               <motion.div
-                className="text-center px-8"
+                className="relative px-8 text-center"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1, delay: 1 }}
               >
                 <motion.p
-                  className="font-med-body text-xs uppercase tracking-[0.25em] text-w6-white/90 mb-4"
+                  className="font-med-body mb-4 text-xs font-bold uppercase tracking-[0.25em] text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.95)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5 }}
@@ -459,21 +459,14 @@ const Template6Page = () => {
                   {t(template6Data.reveal.title, template6Data.reveal.titleAr)}
                 </motion.p>
                 <motion.h1
-                  className="font-med-display text-6xl md:text-8xl lg:text-9xl leading-none text-w6-white mb-6"
+                  className="font-med-display mb-6 text-6xl leading-none text-white drop-shadow-[0_8px_28px_rgba(0,0,0,0.95)] md:text-8xl lg:text-9xl"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
                 >
                   {t(template6Data.hero.coupleNames, template6Data.hero.coupleNamesAr)}
                 </motion.h1>
-                <motion.p
-                  className="font-med-body text-sm uppercase tracking-[0.22em] text-w6-white/90"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.8 }}
-                >
-                  {t(template6Data.hero.weddingDate, template6Data.hero.weddingDateAr)}
-                </motion.p>
+                
 
                 {/* Scroll indicator */}
                 <motion.button
@@ -485,14 +478,14 @@ const Template6Page = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="font-med-body text-xs uppercase tracking-[0.2em] text-w6-white/80">
+                  <span className="font-med-body text-xs uppercase tracking-[0.2em] text-white/80">
                     {t('Discover More', 'اعرف أكتر')}
                   </span>
                   <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    <ChevronDown className="h-6 w-6 text-w6-white/80" />
+                    <ChevronDown className="h-6 w-6 text-white/80" />
                   </motion.div>
                 </motion.button>
               </motion.div>
