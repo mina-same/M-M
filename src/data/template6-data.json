@@ -51,7 +51,7 @@
 
   "reveal": {
     "title": "Reveal",
-    "titleAr": "اكشط",
+    "titleAr": "خربش عشان تعرف التاريخ",
     "subtitle": "Scratch to discover the date",
     "subtitleAr": "خربش عشان تعرف التاريخ",
     "day": "6",
@@ -98,29 +98,29 @@
     "titleAr": "حكايتنا",
     "sections": [
       {
-        "title": "How We Met",
-        "titleAr": "أول لقاء",
+        "title": "Our story started long ago",
+        "titleAr": "حكايتنا بدأت من زمان",
         "image": "/assets/mediterranean/images/1.jpeg",
         "alt": "Couple meeting for the first time",
         "altAr": "الزوجين في أول لقاء"
       },
       {
-        "title": "Our Proposal",
-        "titleAr": "يوم الخطوبة",
+        "title": "Our Proposal in Port Said",
+        "titleAr": "خطوبتنا في بورسعيد",
         "image": "/assets/mediterranean/images/2.jpeg",
         "alt": "First date memories",
         "altAr": "ذكريات أول موعد"
       },
       {
-        "title": "A Journey Together",
-        "titleAr": "رحلتنا مع بعض",
+        "title": "Our Journey Together was amazing",
+        "titleAr": "رحلتنا سوا كانت تجنن",
         "image": "/assets/mediterranean/images/3.jpeg",
         "alt": "A couple enjoying time together",
         "altAr": "الزوجين بيستمتعوا بوقتهم مع بعض"
       },
       {
-        "title": "The Wedding Day",
-        "titleAr": "يوم الفرح",
+        "title": "And finally our Wedding Day is close",
+        "titleAr": "وأخيراً يوم فرحنا قرب",
         "image": "/assets/mediterranean/images/4.jpeg",
         "alt": "Wedding day celebration",
         "altAr": "احتفال يوم الفرح"

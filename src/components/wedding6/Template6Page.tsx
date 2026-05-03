@@ -521,7 +521,7 @@ const Template6Page = () => {
                   [template6Data.reveal.year, "Year", "سنة"],
                 ].map(([value, labelEn, labelAr], index) => (
                   <Reveal key={labelEn as string} delay={index * 0.12} className="flex flex-col items-center">
-                    <ScratchCard width={100} height={100} label={t('Scratch', 'اكشط')}>
+                    <ScratchCard width={100} height={100} label={t('Scratch', 'خربش')}>
                       <span className="font-med-display text-2xl text-w6-blue">{value}</span>
                     </ScratchCard>
                     <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-w6-blue/60">{t(labelEn as string, labelAr as string)}</p>
@@ -535,13 +535,13 @@ const Template6Page = () => {
               <SectionTitle title={t(template6Data.story.title, template6Data.story.titleAr)} />
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {storySections.map((section, idx) => (
-                  <Reveal key={idx} delay={0.1 + idx * 0.08} className="rounded-[2rem] overflow-hidden bg-w6-paper shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
+                  <Reveal key={idx} delay={0.1 + idx * 0.08} className="rounded-[2rem] overflow-hidden bg-w6-paper shadow-[0_20px_50px_rgba(15,23,42,0.08)] flex flex-col">
                     <img
                       src={storyImages[idx]}
                       alt={t(section.alt, section.altAr)}
-                      className="h-[28rem] w-full object-cover"
+                      className="w-full h-auto md:h-72 xl:h-80 object-cover"
                     />
-                    <div className="p-6 text-center">
+                    <div className="p-6 text-center flex-1 flex items-center justify-center">
                       <h3 className="font-med-display text-xl text-w6-blue">{t(section.title, section.titleAr)}</h3>
                     </div>
                   </Reveal>
@@ -896,13 +896,11 @@ const Template6Page = () => {
 
             {/* Footer section */}
             <section className="bg-w6-white px-6 py-12 text-center">
-              <Reveal className="mx-auto max-w-md">
-                <div className="rounded-[2rem] bg-w6-white px-8 py-12 shadow-[0_10px_30px_rgba(17,24,39,0.08)]" style={{ clipPath: "polygon(0% 8%,4% 4%,8% 0%,15% 2%,22% 0%,29% 2%,36% 0%,43% 2%,50% 0%,57% 2%,64% 0%,71% 2%,78% 0%,85% 2%,92% 0%,96% 4%,100% 8%,98% 15%,100% 22%,98% 29%,100% 36%,98% 43%,100% 50%,98% 57%,100% 64%,98% 71%,100% 78%,98% 85%,100% 92%,96% 96%,92% 100%,85% 98%,78% 100%,71% 98%,64% 100%,57% 98%,50% 100%,43% 98%,36% 100%,29% 98%,22% 100%,15% 98%,8% 100%,4% 96%,0% 92%,2% 85%,0% 78%,2% 71%,0% 64%,2% 57%,0% 50%,2% 43%,0% 36%,2% 29%,0% 22%,2% 15%)" }}>
+              <Reveal className="mx-auto max-w-md rounded-[2rem] bg-w6-blue p-5">
+                <div className="bg-w6-white px-8 py-12" style={{ clipPath: "polygon(0% 8%,4% 4%,8% 0%,15% 2%,22% 0%,29% 2%,36% 0%,43% 2%,50% 0%,57% 2%,64% 0%,71% 2%,78% 0%,85% 2%,92% 0%,96% 4%,100% 8%,98% 15%,100% 22%,98% 29%,100% 36%,98% 43%,100% 50%,98% 57%,100% 64%,98% 71%,100% 78%,98% 85%,100% 92%,96% 96%,92% 100%,85% 98%,78% 100%,71% 98%,64% 100%,57% 98%,50% 100%,43% 98%,36% 100%,29% 98%,22% 100%,15% 98%,8% 100%,4% 96%,0% 92%,2% 85%,0% 78%,2% 71%,0% 64%,2% 57%,0% 50%,2% 43%,0% 36%,2% 29%,0% 22%,2% 15%)" }}>
                   <h2 className="font-med-display text-4xl">{t(template6Data.footer.thankYou, template6Data.footer.thankYouAr)}</h2>
-                  <p className="mt-6 leading-relaxed text-w6-blue/90">
-                    {t(template6Data.footer.message, template6Data.footer.messageAr)}
-                  </p>
-                  <p className="mt-6 font-med-display text-3xl text-w6-blue">{t(template6Data.footer.coupleNames, template6Data.footer.coupleNamesAr)}</p>
+                  <p className="mt-6 leading-relaxed">{t(template6Data.footer.message, template6Data.footer.messageAr)}</p>
+                  <p className="mt-6 font-med-display text-3xl">{t(template6Data.footer.coupleNames, template6Data.footer.coupleNamesAr)}</p>
                   <p className="mt-8 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-w6-blue/45">
                     <CalendarDays className="h-3 w-3" />
                     {t(template6Data.footer.weddingDate, template6Data.footer.weddingDateAr)}
