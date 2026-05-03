@@ -45,17 +45,20 @@ const Gramophone = ({ song, position = 'bottom-right', autoPlay = false }: Gramo
     };
   }, [song]); // Only depend on song, not autoPlay
 
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
+
   // Separate effect to handle autoplay
   useEffect(() => {
-    if (autoPlay && audioRef.current && !isPlaying) {
+    if (autoPlay && audioRef.current && !isPlaying && !hasAutoPlayed) {
       audioRef.current.currentTime = 0; // Start from beginning
       audioRef.current.play().catch(err => {
         console.log('Autoplay blocked:', err);
         setHasError(true);
       });
       setIsPlaying(true);
+      setHasAutoPlayed(true);
     }
-  }, [autoPlay, isPlaying]);
+  }, [autoPlay, isPlaying, hasAutoPlayed]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();

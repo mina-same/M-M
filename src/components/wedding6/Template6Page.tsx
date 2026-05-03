@@ -709,14 +709,18 @@ const Template6Page = () => {
                   className="mt-10 inline-flex flex-col items-center gap-3 border-2 border-w6-blue px-10 py-7"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Smartphone className="h-6 w-6" />
+                  <img 
+                    src="/assets/mediterranean/images/instapay.png" 
+                    alt="Instapay" 
+                    className="h-14 w-auto object-contain mix-blend-multiply" 
+                  />
                   <p className="text-[10px] uppercase tracking-[0.18em] text-w6-blue/60">InstaPay</p>
                   <button
                     type="button"
                     onClick={() => setShowInstapay((prev) => !prev)}
                     className="font-mono text-sm text-w6-blue underline-offset-4 hover:text-w6-blue/80 focus:outline-none"
                   >
-                    {showInstapay ? template6Data.gifts.instapay : t('Show number', 'اعرض الرقم')}
+                    {showInstapay ? template6Data.gifts.instapay : 'Show number'}
                   </button>
                 </motion.div>
               </Reveal>
