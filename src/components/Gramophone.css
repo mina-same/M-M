@@ -1,0 +1,52 @@
+/* Gramophone Component Styles - Professional & Realistic */
+
+.spinning {
+  animation: spin 2s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth start/stop animation */
+.spinning {
+  transition: transform 0.3s ease-out;
+}
+
+/* Vinyl record shine effect */
+.vinyl-shine {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+/* Hover effects */
+@media (hover: hover) {
+  .gramophone-button:hover .spinning {
+    animation-duration: 1.5s;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .spinning {
+    animation-duration: 6s;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  button[aria-label="Music player"] {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}

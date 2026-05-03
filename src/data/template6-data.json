@@ -1,0 +1,203 @@
+{
+  "templateId": "template6",
+  "templateName": "Mediterranean Elegance",
+
+  "theme": {
+    "colors": {
+      "w6Paper": "45 20% 97%",
+      "w6Blue": "210 45% 25%",
+      "w6BlueSoft": "210 30% 85%",
+      "w6Olive": "85 25% 45%",
+      "w6Sand": "35 40% 88%",
+      "w6White": "0 0% 100%"
+    },
+    "fonts": {
+      "display": "'Cormorant Garamond', Georgia, serif",
+      "body": "'Montserrat', system-ui, sans-serif"
+    }
+  },
+
+  "song": {
+    "title": "Mediterranean Dreams",
+    "artist": "Traditional",
+    "audioUrl": "/assets/mediterranean/intro-music-CzqJOUtA.mp3",
+    "coverImage": "/assets/mediterranean/wedding-rings-tICi3tqv.png",
+    "autoplay": false,
+    "loop": true
+  },
+
+  "header": {
+    "logo": "M&M",
+    "navLinks": [
+      { "label": "Home", "labelAr": "الرئيسية", "href": "#home" },
+      { "label": "Details", "labelAr": "التفاصيل", "href": "#details" },
+      { "label": "Timeline", "labelAr": "الجدول", "href": "#timeline" },
+      { "label": "RSVP", "labelAr": "التأكيد", "href": "#rsvp" }
+    ],
+    "showLanguageSwitcher": true
+  },
+
+  "hero": {
+    "coupleNames": "Mohp & Margo",
+    "coupleNamesAr": "محب ومارجو",
+    "subtitle": "You are invited to our wedding",
+    "subtitleAr": "احنا عازينكم على فرحنا",
+    "weddingDate": "June 6, 2026",
+    "weddingDateAr": "٦ يونيو ٢٠٢٦",
+    "countdownDate": "2026-06-06T18:00:00",
+    "doorImage": "/assets/mediterranean/mediterranean-door-closed-CaLFMZnR.jpg",
+    "doorVideo": "/assets/mediterranean/mediterranean-door-video-YFNpuV1e.mov"
+  },
+
+  "reveal": {
+    "title": "Reveal",
+    "titleAr": "اكشط",
+    "subtitle": "Scratch to discover the date",
+    "subtitleAr": "خربش عشان تعرف التاريخ",
+    "day": "6",
+    "month": "Jun",
+    "monthAr": "يونيو",
+    "year": "2026",
+    "columnImage": "/assets/mediterranean/greek-column-CdRpDqoQ.png"
+  },
+
+  "countdown": {
+    "title": "Countdown",
+    "titleAr": "باقي قد إيه",
+    "subtitle": "until the big day",
+    "subtitleAr": "على يوم الفرح"
+  },
+
+  "venue": {
+    "title": "The celebration will take place at",
+    "titleAr": "الفرح هيكون في",
+    "name": "Attarien Church",
+    "nameImage": "",
+    "wreathImage": "/assets/mediterranean/olive-wreath-BxRsRA3L.png",
+    "illustrationImage": "/assets/mediterranean/images/chursh.jpeg",
+    "location": "Alexandria, Egypt",
+    "locationAr": "كنيسة العطارين الانجيلية",
+    "address": "2 Evangelical church St, Attarien, Alexandria, Egypt",
+    "addressAr": "٢ ش الكنيسة الإنجيلية، العطارين، الإسكندرية، مصر",
+    "mapsUrl": "https://maps.app.goo.gl/RHhXJZb4FsH3b1W36?g_st=iw"
+  },
+
+  "timeline": {
+    "title": "Timeline",
+    "titleAr": "برنامج الفرح",
+    "eyebrow": "Schedule",
+    "eyebrowAr": "البرنامج",
+    "frameImage": "/assets/mediterranean/menu-frame-CxQHVVTH.png",
+    "events": [
+      { "time": "6:00 PM · Attarien Church", "timeAr": "٦:٠٠ · كنيسة العطارين الانجلية", "title": "Ceremony", "titleAr": "الزفاف" }
+    ]
+  },
+
+  "story": {
+    "title": "Our Story",
+    "titleAr": "حكايتنا",
+    "sections": [
+      {
+        "title": "How We Met",
+        "titleAr": "أول لقاء",
+        "image": "/assets/mediterranean/images/1.jpeg",
+        "alt": "Couple meeting for the first time",
+        "altAr": "الزوجين في أول لقاء"
+      },
+      {
+        "title": "Our Proposal",
+        "titleAr": "يوم الخطوبة",
+        "image": "/assets/mediterranean/images/2.jpeg",
+        "alt": "First date memories",
+        "altAr": "ذكريات أول موعد"
+      },
+      {
+        "title": "A Journey Together",
+        "titleAr": "رحلتنا مع بعض",
+        "image": "/assets/mediterranean/images/3.jpeg",
+        "alt": "A couple enjoying time together",
+        "altAr": "الزوجين بيستمتعوا بوقتهم مع بعض"
+      },
+      {
+        "title": "The Wedding Day",
+        "titleAr": "يوم الفرح",
+        "image": "/assets/mediterranean/images/4.jpeg",
+        "alt": "Wedding day celebration",
+        "altAr": "احتفال يوم الفرح"
+      }
+    ]
+  },
+
+  "dressCode": {
+    "title": "Dress Code",
+    "titleAr": "الـ Dress Code",
+    "illustrationImage": "/assets/mediterranean/dresscode-illustration-BT5yPEQh.png",
+    "description": "We invite you to dress elegantly for this special celebration.",
+    "descriptionAr": "لبسوا شيك وأنيق، الفرح ده بيستاهل",
+    "attire": "Formal Attire",
+    "attireAr": "رسمي أنيق",
+    "note": "Black & White is reserved for the Bride and Groom",
+    "noteAr": "الأسود والأبيض للعروسين بس"
+  },
+
+  "gifts": {
+    "eyebrow": "Wedding registry",
+    "eyebrowAr": "هدايا الفرح",
+    "title": "Gifts",
+    "titleAr": "الهدايا",
+    "iconImage": "/assets/mediterranean/gift-icon-Bi1nO5bG.png",
+    "description": "Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, do what you feel God encourages you to do.",
+    "descriptionAr": "وجودكم معانا هو أحلى هدية. لو حبيت تشاركنا البداية الجديدة دي، اعمل اللي تحس إن ربنا بيشجعك عليه.",
+    "iban": "IBAN GR00 0000 0000 0000",
+    "instapay": "01203221213"
+  },
+
+  "rsvp": {
+    "title": "Confirm your attendance",
+    "titleAr": "هتيجي؟",
+    "ringsImage": "/assets/mediterranean/wedding-rings-tICi3tqv.png",
+    "fields": {
+      "name": {
+        "label": "Full name",
+        "labelAr": "اسمك إيه؟",
+        "placeholder": "Full name",
+        "placeholderAr": "اسمك إيه؟",
+        "required": true
+      },
+      "email": {
+        "label": "Email (optional)",
+        "labelAr": "إيميلك (اختياري)",
+        "placeholder": "Email (optional)",
+        "placeholderAr": "إيميلك (اختياري)",
+        "required": false
+      },
+      "attendance": {
+        "yes": "Yes, I'll be there!",
+        "yesAr": "أيوه، هكون معاكم!",
+        "no": "No, I can't make it",
+        "noAr": "آسف، مش قادر أيجي"
+      },
+      "message": {
+        "label": "Write us a few words...",
+        "labelAr": "قولنا كلمة...",
+        "placeholder": "Write us a few words...",
+        "placeholderAr": "قولنا كلمة..."
+      }
+    }
+  },
+
+  "footer": {
+    "thankYou": "Thank You",
+    "thankYouAr": "شكراً ليكم",
+    "message": "For joining us on this special day. Your presence is the best gift we could receive.",
+    "messageAr": "على وجودكم معانا في يومنا ده. حضوركم هو أحلى هدية.",
+    "coupleNames": "Mohp & Margo",
+    "coupleNamesAr": "محب و مارجو",
+    "weddingDate": "6 June 2026",
+    "weddingDateAr": "٦ يونيو ٢٠٢٦"
+  },
+
+  "decorations": {
+    "fishPlate": "/assets/mediterranean/fish-plate-0pOInnFs.png"
+  }
+}
