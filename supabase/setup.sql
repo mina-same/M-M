@@ -21,7 +21,26 @@ to anon, authenticated
 with check (
   length(trim(name)) between 1 and 120
   and length(trim(message)) between 1 and 5000
-  and cardinality(photo_urls) <= 4
+  and (photo_urls is null or cardinality(photo_urls) <= 4)
+);
+
+drop policy if exists "Anyone can view wedding wishes" on public.wish_messages;
+create policy "Anyone can view wedding wishes"
+on public.wish_messages
+for select
+to anon, authenticated
+using (true);
+
+drop policy if exists "Anyone can update wedding wishes" on public.wish_messages;
+create policy "Anyone can update wedding wishes"
+on public.wish_messages
+for update
+to anon, authenticated
+using (true)
+with check (
+  length(trim(name)) between 1 and 120
+  and length(trim(message)) between 1 and 5000
+  and (photo_urls is null or cardinality(photo_urls) <= 4)
 );
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
