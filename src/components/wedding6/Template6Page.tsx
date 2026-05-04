@@ -8,10 +8,12 @@ import { supabase } from "@/lib/supabase";
 import template6Data from "@/data/template6-data.json";
 
 type WishMessage = {
+  id?: string | number;
   name: string;
   message: string;
   uploadedPhotos: { photos: string[] } | null;
   timestamp: number;
+  wantsPhotos?: boolean;
 };
 
 const getSavedWish = (): WishMessage | null => {
@@ -186,6 +188,8 @@ const Template6Page = () => {
     message: initialSavedWish?.message === "Write your wish for us" ? "" : initialSavedWish?.message || "",
   }));
   const [savedWishId, setSavedWishId] = useState<number | null>(() => initialSavedWish?.timestamp || null);
+  const [dbId, setDbId] = useState<number | string | null>(() => initialSavedWish?.id || null);
+  const [wantsPhotos, setWantsPhotos] = useState<boolean>(() => initialSavedWish?.wantsPhotos || false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [showInstapay, setShowInstapay] = useState(false);
@@ -278,23 +282,47 @@ const Template6Page = () => {
     setIsSaving(true);
 
     try {
-      const photoUrls = uploadedFiles.length > 0 ? await uploadPhotosToSupabase() : [];
+      const photoUrls = uploadedFiles.length > 0 ? await uploadPhotosToSupabase() : uploadedPhotos;
       const timestamp = savedWishId || Date.now();
+      
+      let finalMessage = wishForm.message;
+      if (wantsPhotos) {
+        const photoText = t('Wait for taking photos with us at the wedding day', 'هستناكم عشان نتصور مع بعض يوم الفرح');
+        if (!finalMessage.includes(photoText)) {
+          finalMessage = finalMessage ? `${finalMessage}\n\n${photoText}` : photoText;
+        }
+      }
+
       const newMsg: WishMessage = {
+        id: dbId || undefined,
         name: wishForm.name || "Anonymous",
-        message: wishForm.message || "Write your wish for us",
+        message: finalMessage || "Write your wish for us",
         uploadedPhotos: photoUrls.length > 0 ? { photos: photoUrls } : null,
         timestamp,
+        wantsPhotos,
       };
 
-      const { error: insertError } = await supabase.from("wish_messages").insert([{ 
+      const wishData = {
         name: newMsg.name,
         message: newMsg.message,
-        photo_urls: photoUrls,
-      }]);
+        photo_urls: photoUrls.length > 0 ? photoUrls : null,
+      };
 
-      if (insertError) {
-        throw insertError;
+      let supabaseResponse;
+      if (dbId) {
+        supabaseResponse = await supabase.from("wish_messages").update(wishData).eq('id', dbId).select();
+      } else {
+        supabaseResponse = await supabase.from("wish_messages").insert([wishData]).select();
+      }
+
+      if (supabaseResponse.error) {
+        throw supabaseResponse.error;
+      }
+
+      const returnedId = supabaseResponse.data?.[0]?.id;
+      if (returnedId) {
+        newMsg.id = returnedId;
+        setDbId(returnedId);
       }
 
       const stored = JSON.parse(localStorage.getItem("guestMessages") || "[]") as WishMessage[];
@@ -357,12 +385,19 @@ const Template6Page = () => {
     transition: { duration: 3, repeat: Infinity, ease: "easeInOut" as const }
   };
 
-  const previewWish = useMemo(() => ({
-    name: wishForm.name || "Anonymous",
-    message: wishForm.message || "Write your wish for us",
-    uploadedPhotos: uploadedPhotos.length > 0 ? { photos: uploadedPhotos } : null,
-    timestamp: savedWishId || previewTimestamp,
-  }), [wishForm.name, wishForm.message, uploadedPhotos, savedWishId, previewTimestamp]);
+  const previewWish = useMemo(() => {
+    let message = wishForm.message || "Write your wish for us";
+    if (wantsPhotos) {
+      const photoText = t('Wait for taking photos with us at the wedding day', 'هستناكم عشان نتصور مع بعض يوم الفرح');
+      message = message === "Write your wish for us" ? photoText : `${message}\n\n${photoText}`;
+    }
+    return {
+      name: wishForm.name || "Anonymous",
+      message: message,
+      uploadedPhotos: uploadedPhotos.length > 0 ? { photos: uploadedPhotos } : null,
+      timestamp: savedWishId || previewTimestamp,
+    };
+  }, [wishForm.name, wishForm.message, uploadedPhotos, savedWishId, previewTimestamp, wantsPhotos, lang]);
 
   return (
     <main className="min-h-screen bg-w6-paper text-w6-blue font-med-body overflow-x-hidden">
@@ -829,6 +864,19 @@ const Template6Page = () => {
                           <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.16em] text-w6-blue/50">
                             {t('Photos', 'الصور')}
                           </label>
+
+                          <div className="mb-4 flex items-center gap-3 rounded-2xl bg-w6-paper/50 p-4 border border-w6-blue/5">
+                            <input 
+                              type="checkbox" 
+                              id="wantsPhotos" 
+                              checked={wantsPhotos} 
+                              onChange={(e) => setWantsPhotos(e.target.checked)}
+                              className="h-5 w-5 rounded border-w6-blue/20 text-w6-blue focus:ring-w6-blue/20"
+                            />
+                            <label htmlFor="wantsPhotos" className="text-sm font-medium text-w6-blue/70 cursor-pointer">
+                              {t('Wait for taking photos with us at the wedding day', 'هستناكم عشان نتصور مع بعض يوم الفرح')}
+                            </label>
+                          </div>
                           {uploadedPhotos.length > 0 ? (
                             <div className="grid grid-cols-4 gap-2">
                               {uploadedPhotos.map((photo, idx) => (
