@@ -195,16 +195,16 @@ const Template6Page = () => {
   const t = (en: string, ar: string) => lang === 'ar' ? ar : en;
 
   const venueGallery = useMemo(
-    () => Array.from({ length: 13 }, (_, idx) => `/assets/mediterranean/images/${idx + 1}.jpeg`),
+    () => Array.from({ length: 13 }, (_, idx) => `/assets/mediterranean/images/${idx + 1}.webp`),
     [],
   );
 
   const storyImages = useMemo(
     () => [
-      '/assets/mediterranean/images/our%20story/1.jpeg',
-      '/assets/mediterranean/images/our%20story/2.png',
-      '/assets/mediterranean/images/our%20story/3.jpeg',
-      '/assets/mediterranean/images/our%20story/4.jpeg',
+      '/assets/mediterranean/images/our%20story/1.webp',
+      '/assets/mediterranean/images/our%20story/2.webp',
+      '/assets/mediterranean/images/our%20story/3.webp',
+      '/assets/mediterranean/images/our%20story/4.webp',
     ],
     [],
   );
@@ -384,7 +384,10 @@ const Template6Page = () => {
   }, [wishForm.name, wishForm.message, uploadedPhotos, savedWishId, previewTimestamp]);
 
   return (
-    <main className="min-h-screen bg-w6-paper text-w6-blue font-med-body overflow-x-hidden">
+    <main 
+      className="min-h-screen bg-w6-paper text-w6-blue font-med-body overflow-x-hidden"
+      dir={lang === 'ar' ? 'rtl' : 'ltr'}
+    >
       {/* Language switcher */}
       <div className="fixed top-4 right-4 z-50 flex gap-1 rounded-full border border-w6-blue/20 bg-w6-paper/95 p-1 backdrop-blur">
         <button 

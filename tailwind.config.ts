@@ -15,8 +15,8 @@ export default {
         },
       },
       fontFamily: {
-        'med-body': ["'Montserrat'", 'system-ui', 'sans-serif'],
-        'med-display': ["'Cormorant Garamond'", 'Georgia', 'serif'],
+        'med-body': ["'Montserrat'", "'Noto Sans Arabic'", 'system-ui', 'sans-serif'],
+        'med-display': ["'Cormorant Garamond'", "'Amiri'", "'Noto Sans Arabic'", 'Georgia', 'serif'],
       },
     },
   },

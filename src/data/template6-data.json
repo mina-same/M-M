@@ -21,7 +21,7 @@
     "title": "Mediterranean Dreams",
     "artist": "Traditional",
     "audioUrl": "/assets/mediterranean/intro-music-CzqJOUtA.mp3",
-    "coverImage": "/assets/mediterranean/wedding-rings-tICi3tqv.png",
+    "coverImage": "/assets/mediterranean/wedding-rings-tICi3tqv.webp",
     "autoplay": false,
     "loop": true
   },
@@ -45,7 +45,7 @@
     "weddingDate": "June 6, 2026",
     "weddingDateAr": "٦ يونيو ٢٠٢٦",
     "countdownDate": "2026-06-06T18:00:00",
-    "doorImage": "/assets/mediterranean/mediterranean-door-closed-CaLFMZnR.jpg",
+    "doorImage": "/assets/mediterranean/mediterranean-door-closed-CaLFMZnR.webp",
     "doorVideo": "/assets/mediterranean/mediterranean-door-video-YFNpuV1e.mov"
   },
 
@@ -58,7 +58,7 @@
     "month": "Jun",
     "monthAr": "يونيو",
     "year": "2026",
-    "columnImage": "/assets/mediterranean/greek-column-CdRpDqoQ.png"
+    "columnImage": "/assets/mediterranean/greek-column-CdRpDqoQ.webp"
   },
 
   "countdown": {
@@ -73,8 +73,8 @@
     "titleAr": "الفرح هيكون في",
     "name": "Attarien Church",
     "nameImage": "",
-    "wreathImage": "/assets/mediterranean/olive-wreath-BxRsRA3L.png",
-    "illustrationImage": "/assets/mediterranean/images/chursh.jpeg",
+    "wreathImage": "/assets/mediterranean/olive-wreath-BxRsRA3L.webp",
+    "illustrationImage": "/assets/mediterranean/images/chursh.webp",
     "location": "Alexandria, Egypt",
     "locationAr": "كنيسة العطارين الانجيلية",
     "address": "2 Evangelical church St, Attarien, Alexandria, Egypt",
@@ -87,7 +87,7 @@
     "titleAr": "برنامج الفرح",
     "eyebrow": "Schedule",
     "eyebrowAr": "البرنامج",
-    "frameImage": "/assets/mediterranean/menu-frame-CxQHVVTH.png",
+    "frameImage": "/assets/mediterranean/menu-frame-CxQHVVTH.webp",
     "events": [
       { "time": "6:00 PM · Attarien Church", "timeAr": "٦:٠٠ · كنيسة العطارين الانجلية", "title": "Ceremony", "titleAr": "الزفاف" }
     ]
@@ -100,28 +100,28 @@
       {
         "title": "Our story started long ago",
         "titleAr": "حكايتنا بدأت من زمان",
-        "image": "/assets/mediterranean/images/1.jpeg",
+        "image": "/assets/mediterranean/images/1.webp",
         "alt": "Couple meeting for the first time",
         "altAr": "الزوجين في أول لقاء"
       },
       {
         "title": "Our Proposal in Port Said",
         "titleAr": "البروبوزال بتاعنا في بورسعيد",
-        "image": "/assets/mediterranean/images/2.jpeg",
+        "image": "/assets/mediterranean/images/2.webp",
         "alt": "First date memories",
         "altAr": "ذكريات أول موعد"
       },
       {
         "title": "Our Journey Together was amazing because the Lord was always there",
         "titleAr": "رحلتنا سوا كانت تجنن عشان ربنا كان دايماً معانا",
-        "image": "/assets/mediterranean/images/3.jpeg",
+        "image": "/assets/mediterranean/images/3.webp",
         "alt": "A couple enjoying time together",
         "altAr": "الزوجين بيستمتعوا بوقتهم مع بعض"
       },
       {
         "title": "And finally our Wedding Day is close",
         "titleAr": "وأخيراً يوم فرحنا قرب",
-        "image": "/assets/mediterranean/images/4.jpeg",
+        "image": "/assets/mediterranean/images/4.webp",
         "alt": "Wedding day celebration",
         "altAr": "احتفال يوم الفرح"
       }
@@ -131,7 +131,7 @@
   "dressCode": {
     "title": "Dress Code",
     "titleAr": "الـ Dress Code",
-    "illustrationImage": "/assets/mediterranean/dresscode-illustration-BT5yPEQh.png",
+    "illustrationImage": "/assets/mediterranean/dresscode-illustration-BT5yPEQh.webp",
     "description": "We invite you to dress elegantly for this special celebration.",
     "descriptionAr": "لبسوا شيك وأنيق، الفرح ده بيستاهل",
     "attire": "Formal Attire",
@@ -145,7 +145,7 @@
     "eyebrowAr": "هدايا الفرح",
     "title": "Gifts",
     "titleAr": "الهدايا",
-    "iconImage": "/assets/mediterranean/gift-icon-Bi1nO5bG.png",
+    "iconImage": "/assets/mediterranean/gift-icon-Bi1nO5bG.webp",
     "description": "Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, do what you feel God encourages you to do.",
     "descriptionAr": "وجودكم معانا هو أحلى هدية. لو حبيت تشاركنا البداية الجديدة دي، اعمل اللي تحس إن ربنا بيشجعك عليه.",
     "iban": "IBAN GR00 0000 0000 0000",
@@ -155,7 +155,7 @@
   "rsvp": {
     "title": "Confirm your attendance",
     "titleAr": "هتيجي؟",
-    "ringsImage": "/assets/mediterranean/wedding-rings-tICi3tqv.png",
+    "ringsImage": "/assets/mediterranean/wedding-rings-tICi3tqv.webp",
     "fields": {
       "name": {
         "label": "Full name",
@@ -198,6 +198,6 @@
   },
 
   "decorations": {
-    "fishPlate": "/assets/mediterranean/fish-plate-0pOInnFs.png"
+    "fishPlate": "/assets/mediterranean/fish-plate-0pOInnFs.webp"
   }
 }
