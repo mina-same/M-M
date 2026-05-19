@@ -44,7 +44,7 @@
     "subtitleAr": "احنا عازينكم على فرحنا",
     "weddingDate": "June 6, 2026",
     "weddingDateAr": "٦ يونيو ٢٠٢٦",
-    "countdownDate": "2026-06-06T18:00:00",
+    "countdownDate": "2026-06-06T19:00:00",
     "doorImage": "/assets/mediterranean/mediterranean-door-closed-CaLFMZnR.webp",
     "doorVideo": "/assets/mediterranean/mediterranean-door-video-YFNpuV1e.mov"
   },
@@ -89,7 +89,7 @@
     "eyebrowAr": "البرنامج",
     "frameImage": "/assets/mediterranean/menu-frame-CxQHVVTH.webp",
     "events": [
-      { "time": "6:00 PM · Attarien Church", "timeAr": "٦:٠٠ · كنيسة العطارين الانجلية", "title": "Ceremony", "titleAr": "الزفاف" }
+      { "time": "7:00 PM · Attarien Church", "timeAr": "٧:٠٠ · كنيسة العطارين الانجلية", "title": "Ceremony", "titleAr": "الزفاف" }
     ]
   },
 
