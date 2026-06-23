@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CalendarDays, MapPin, Send, ChevronDown, Upload, X } from "lucide-react";
+import { CalendarDays, MapPin, Send, ChevronDown, Upload, X, BookOpen } from "lucide-react";
 import ScratchCard from "./ScratchCard";
 import Gramophone from "../Gramophone";
 import { Book2 } from "../Book2";
@@ -515,6 +515,24 @@ const Template6Page = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        {/* Hero bottom bar: guest book link + attribution */}
+        <div className="absolute bottom-5 left-0 right-0 z-30 flex items-center justify-between px-6 pointer-events-none">
+          <a
+            href="#guestbook"
+            className="pointer-events-auto flex items-center gap-2 text-white/50 text-[11px] uppercase tracking-[0.18em] hover:text-white/90 transition-colors duration-300"
+          >
+            <BookOpen size={12} />
+            {t('Wish Book', 'كتاب الأمنيات')}
+          </a>
+          <a
+            href="https://farhna.online"
+            target="_blank"
+            rel="noreferrer"
+            className="pointer-events-auto text-white/25 text-[10px] uppercase tracking-[0.14em] hover:text-white/60 transition-colors duration-300"
+          >
+            {t('Created by', 'صُنع بواسطة')} Farhna.online
+          </a>
+        </div>
       </section>
 
       {/* Content sections */}
@@ -944,7 +962,7 @@ const Template6Page = () => {
               <Book2
                 title={t("Our Guest Book", "كتاب أمنياتنا")}
                 subtitle={t("With love from family & friends", "بحب من العيلة والأصحاب")}
-                image="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80"
+                image="/assets/mediterranean/images/main.webp"
                 lang={lang}
               />
             </section>
