@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CalendarDays, MapPin, Send, ChevronDown, Upload, X } from "lucide-react";
 import ScratchCard from "./ScratchCard";
 import Gramophone from "../Gramophone";
+import { Book2 } from "../Book2";
 import { useCountdown } from "@/hooks/useCountdown";
 import { supabase } from "@/lib/supabase";
 import template6Data from "@/data/template6-data.json";
@@ -927,6 +928,25 @@ const Template6Page = () => {
 
                 </div>
               </div>
+            </section>
+
+            {/* Guest Book section */}
+            <section id="guestbook" className="px-6 py-20 md:py-28 bg-w6-paper text-center overflow-hidden">
+              <SectionTitle
+                eyebrow={t("Guest Book", "كتاب الأمنيات")}
+                title={t("Our Wish Book", "كتاب أمنياتنا")}
+              />
+              <Reveal delay={0.1}>
+                <p className="text-sm text-w6-blue/60 mb-2">
+                  {t("Hover to open · click to turn pages", "حرك الماوس للفتح · انقر لتقليب الصفحات")}
+                </p>
+              </Reveal>
+              <Book2
+                title={t("Our Guest Book", "كتاب أمنياتنا")}
+                subtitle={t("With love from family & friends", "بحب من العيلة والأصحاب")}
+                image="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80"
+                lang={lang}
+              />
             </section>
 
             {/* Footer section */}
